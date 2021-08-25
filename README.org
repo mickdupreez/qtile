@@ -2,32 +2,32 @@
 #+PROPERTY: header-args :tangle test.y
 
 * TABLE OF CONTENTS :toc:
-- [[#imports][Imports]]
-  - [[#the-code][THE CODE]]
-- [[#hot-keys][Hot Keys]]
-  - [[#the-code-1][THE CODE]]
-- [[#color-pallete-for-qtile][Color Pallete For qtile]]
-  - [[#the-code-2][THE CODE]]
-- [[#window-layouts][Window Layouts]]
-  - [[#the-code-3][THE CODE]]
-- [[#work-spaces][Work-Spaces]]
-  - [[#the-code-4][THE CODE]]
-- [[#bar-and-widgets][Bar And Widgets]]
-  - [[#the-code-5][THE CODE]]
-- [[#mouse-controll][Mouse Controll]]
-  - [[#the-code-6][THE CODE]]
-- [[#window-focus][Window Focus]]
-  - [[#the-code-7][THE CODE]]
-- [[#run-on-startup][Run On Startup]]
-  - [[#the-code-8][THE CODE]]
-- [[#window-manager-name][Window Manager Name]]
-  - [[#the-code-9][THE CODE]]
+- [[#imports][IMPORTS]]
+  - [[#code][code]]
+- [[#shortcut-keys][SHORTCUT KEYS]]
+  - [[#code-1][code]]
+- [[#color-pallete][COLOR PALLETE]]
+  - [[#code-2][code]]
+- [[#window-layouts][WINDOW LAYOUTS]]
+  - [[#code-3][code]]
+- [[#work-spaces][WORK-SPACES]]
+  - [[#code-4][code]]
+- [[#bar-and-widgets][BAR AND WIDGETS]]
+  - [[#code-5][code]]
+- [[#mouse-controll][MOUSE CONTROLL]]
+  - [[#code-6][code]]
+- [[#window-focus][WINDOW FOCUS]]
+  - [[#code-7][code]]
+- [[#run-on-startup][RUN ON STARTUP]]
+  - [[#code-8][code]]
+- [[#window-manager-name][WINDOW MANAGER NAME]]
+  - [[#code-9][code]]
 
-* Imports
+* IMPORTS
 
 This block of code contains the python libraries and modules that need to bee imported for qtile to function
 
-** THE CODE
+** code
 
 #+begin_src python
 
@@ -46,12 +46,12 @@ from libqtile.dgroups import simple_key_binder
 
 #+end_src
 
-* Hot Keys
+* SHORTCUT KEYS
 
 This block of code is for the hot key combinations used and reserved by qtile...
 "mod" is the windows or super key
 
-** THE CODE
+** code
 
 #+begin_src python
 
@@ -109,11 +109,11 @@ keys = [
 
 #+end_src
 
-* Color Pallete For qtile
+* COLOR PALLETE
 
 This block of code is a list of colors used within this config
 
-** THE CODE
+** code
 
 #+begin_src python
 
@@ -128,11 +128,11 @@ colors = [["#282c34", "#282c34"], # panel background
 
 #+end_src
 
-* Window Layouts
+* WINDOW LAYOUTS
 
 This block of code sets the default layout for all windows
 
-** THE CODE
+** code
 
 #+begin_src python
 
@@ -149,11 +149,11 @@ layouts = [
 
 #+end_src
 
-* Work-Spaces
+* WORK-SPACES
 
 This block of code is a list of the workspaces numbered 1-9.
 
-** THE CODE
+** code
 
 #+begin_src python
 
@@ -182,11 +182,11 @@ dgroups_key_binder = simple_key_binder([mod])
 
 #+RESULTS:
 
-* Bar And Widgets
+* BAR AND WIDGETS
 
 This block of code is for the bar and all the widgets in the bar.
 
-** THE CODE
+** code
 
 #+begin_src python
 
@@ -318,11 +318,11 @@ screens = [
 
 #+end_src
 
-* Mouse Controll
+* MOUSE CONTROLL
 
 This block of code enables you to use the mouse to drag windows arround.
 
-** THE CODE
+** code
 
 #+begin_src python
 
@@ -339,11 +339,11 @@ mouse = [
 
 #+end_src
 
-* Window Focus
+* WINDOW FOCUS
 
 This block of code handles window focus and also default float windows for some programs
 
-** THE CODE
+** code
 
 #+begin_src python
 
@@ -370,12 +370,12 @@ reconfigure_screens = True
 
 #+end_src
 
-* Run On Startup
+* RUN ON STARTUP
 
 This block of code runs a shellscript on first startup,
 this launches startup apps
 
-** THE CODE
+** code
 
 #+begin_src python
 
@@ -388,11 +388,11 @@ def start_once():
 
 #+end_src
 
-* Window Manager Name
+* WINDOW MANAGER NAME
 
 This block is for certain java apps
 
-** THE CODE
+** code
 
 #+begin_src python
 
