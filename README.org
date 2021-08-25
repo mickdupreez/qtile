@@ -120,7 +120,7 @@ This block of code is a list of colors used within this config
 colors = [["#282c34", "#282c34"], # panel background
           ["#3d3f4b", "#434758"], # background for current screen tab
           ["#ffffff", "#ffffff"], # font color for group names
-          ["#ff5555", "#ff5555"], # border line color for current tab
+          ["#ff5555", "#ff5555"], # border line color for current ta    b
           ["#74438f", "#74438f"], # border line color for 'other tabs' and color for 'odd widgets'
           ["#4f76c7", "#4f76c7"], # color for the 'even widgets'
           ["#e1acff", "#e1acff"], # window name
@@ -194,7 +194,7 @@ This block of code is for the bar and all the widgets in the bar.
 widget_defaults = dict(
     font='MesloLGS NF BOLD',
     fontsize=15,
-    padding=3,
+    padding=1,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -246,8 +246,17 @@ screens = [
                 ##separator##
                 widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
 
+
+               # widget.TextBox(
+               #        text = ' ',
+               #        fontsize = 30
+               #        ),
+
+
+
+
                 ##network##
-                widget.Net(interface = 'wlp5s0'),
+                widget.Net(interface = 'wlp5s0', format = '{down} ↓↑ {up}'),
 
                 ##separator##
                 widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
@@ -255,11 +264,33 @@ screens = [
                 ##clock##
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
 
+
+                widget.TextBox(
+                       text = '',
+                       fontsize = 18, padding = 0, foreground = colors[4], background = colors[5]
+                       ),
+
+
+
+                widget.TextBox(
+                       text = '',
+                       fontsize = 22, padding = 1, foreground = colors[2], background = colors[4]
+                       ),
+
+
                 ##volume##
-                widget.Volume(padding = 5),
+                widget.Volume(padding = 5, background = colors[4]),
+
+
+                widget.TextBox(
+                       text = '',
+                       fontsize = 18, padding = 0, foreground = colors[3], background = colors[4]
+                       ),
+
+
 
                 ##log out##
-                widget.QuickExit(),
+                widget.QuickExit(default_text = ' LOGOUT ', foreground = colors[2], background = colors[3]),
 
             ],
             24,
