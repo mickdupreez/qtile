@@ -1,5 +1,5 @@
 #+TITLE: OZ's Qtile Config
-#+PROPERTY: header-args :tangle test.y
+#+PROPERTY: header-args :tangle config.py
 
 * TABLE OF CONTENTS :toc:
 - [[#imports][IMPORTS]]
