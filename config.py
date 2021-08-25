@@ -121,37 +121,19 @@ screens = [
                 ##separator##
                 widget.Sep(linewidth = 0, padding = 5, background = colors[0]),
 
-
                 ##separator##
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 16,
-                    background = colors[0]
-                    ),
+                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
 
                 ##workspaces##
-                widget.GroupBox(
-                    highlight_method = "line",
-                    active = colors[3],
-                    inactive = colors[7],
-                    highlight_color = colors[1],
-                    this_current_screen_border = colors[6],
-                    this_screen_border = colors[4]
-                    ),
-
+                widget.GroupBox(highlight_method = "line", active = colors[3],
+                    inactive = colors[7], highlight_color = colors[1],
+                    this_current_screen_border = colors[6],this_screen_border = colors[4]),
 
                 ##separator##
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 16,
-                    background = colors[0]
-                    ),
-
-
+                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
 
                 ##window name##
                 widget.WindowName(),
-
 
                 ##run menu##
                 widget.Prompt(),
@@ -159,63 +141,36 @@ screens = [
                 ##systray##
                 widget.Systray(),
 
-
                 ##separator##
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 16,
-                    background = colors[0]
-                    ),
+                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
 
                 ##cpu##
                 widget.CPU(),
 
                 ##separator##
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 16,
-                    background = colors[0]
-                    ),
+                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
 
                 ##ram##
                 widget.Memory(),
 
                 ##separator##
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 16,
-                    background = colors[0]
-                    ),
-
-
+                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
 
                 ##network##
                 widget.Net(interface = 'wlp5s0'),
 
-
-
                 ##separator##
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 16,
-                    background = colors[0]
-                    ),
-
-
+                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
 
                 ##clock##
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
 
-
                 ##volume##
-                widget.Volume(
-                    padding = 5
-                    ),
-
-
+                widget.Volume(padding = 5),
 
                 ##log out##
                 widget.QuickExit(),
+
             ],
             24,
             background=colors[0],
