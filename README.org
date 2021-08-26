@@ -117,14 +117,16 @@ This block of code is a list of colors used within this config
 
 #+begin_src python
 
-colors = [["#282c34", "#282c34"], # panel background
-          ["#3d3f4b", "#434758"], # background for current screen tab
-          ["#ffffff", "#ffffff"], # font color for group names
-          ["#ff5555", "#ff5555"], # border line color for current ta    b
-          ["#74438f", "#74438f"], # border line color for 'other tabs' and color for 'odd widgets'
-          ["#4f76c7", "#4f76c7"], # color for the 'even widgets'
-          ["#e1acff", "#e1acff"], # window name
-          ["#ecbbfb", "#ecbbfb"]] # backbround for inactive screens
+colors = [["#282c34", "#282c34"], #0    panel background
+          ["#3d3f4b", "#434758"], #1    background for current screen tab
+          ["#ffffff", "#ffffff"], #2    font color for group names
+          ["#ff5555", "#ff5555"], #3    border line color for current ta    b
+          ["#74438f", "#74438f"], #4    border line color for 'other tabs' and color for 'odd widgets'
+          ["#4f76c7", "#4f76c7"], #5    color for the 'even widgets'
+          ["#e1acff", "#e1acff"], #6    window name
+          ["#ecbbfb", "#ecbbfb"], #7    :backbround for inactive screens
+          ["#000000", "#000000"], #8
+          ] # backbround for inactive screens
 
 #+end_src
 
@@ -148,6 +150,8 @@ layouts = [
 
 
 #+end_src
+
+#+RESULTS:
 
 * WORK-SPACES
 
@@ -274,7 +278,7 @@ screens = [
 
                 widget.TextBox(
                        text = '',
-                       fontsize = 22, padding = 1, foreground = colors[2], background = colors[4]
+                       fontsize = 25, padding = 1, foreground = colors[2], background = colors[4]
                        ),
 
 
