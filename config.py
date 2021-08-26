@@ -62,14 +62,27 @@ keys = [
         desc="Spawn a command using a prompt widget"),
 ]
 
-colors = [["#282c34", "#282c34"], # panel background
-          ["#3d3f4b", "#434758"], # background for current screen tab
-          ["#ffffff", "#ffffff"], # font color for group names
-          ["#ff5555", "#ff5555"], # border line color for current ta    b
-          ["#74438f", "#74438f"], # border line color for 'other tabs' and color for 'odd widgets'
-          ["#4f76c7", "#4f76c7"], # color for the 'even widgets'
-          ["#e1acff", "#e1acff"], # window name
-          ["#ecbbfb", "#ecbbfb"]] # backbround for inactive screens
+colors = [["#282c34", "#282c34"], #0
+          ["#3d3f4b", "#434758"], #1
+          ["#ffffff", "#ffffff"], #2
+          ["#ff5555", "#ff5555"], #3
+          ["#ff6e67", "#ff6e67"], #4
+          ["#ff2222", "#ff2222"], #5
+          ["#bd93f9", "#bd93f9"], #6
+          ["#caa9fa", "#caa9fa"], #7
+          ["#4d5b86", "#4d5b86"], #8
+          ["#50fa7b", "#50fa7b"], #9
+          ["#5af78e", "#5af78e"], #10
+          ["#1ef956", "#1ef956"], #11
+          ["#f1fa8c", "#f1fa8c"], #12
+          ["#f4f99d", "#f4f99d"], #13
+          ["#ebf85b", "#ebf85b"], #14
+          ["#ff79c6", "#ff79c6"], #15
+          ["#ff92d0", "#ff92d0"], #16
+          ["#ff46b0", "#ff46b0"], #17
+          ["#8be9fd", "#8be9fd"], #18
+          ["#9aedfe", "#9aedfe"], #19
+          ["#59dffc", "#59dffc"]] #20
 
 layouts = [
     layout.Columns(
@@ -112,25 +125,37 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+#### LEFT SIDE OF THE BAR ####
+
                 ##separator##
-                widget.Sep(linewidth = 0, padding = 26, background = colors[0]),
+                widget.Sep(
+                    linewidth = 0, padding = 26, background = colors[0]
+                ),
 
                 ##show current layout##
                 widget.CurrentLayout(),
 
                 ##separator##
-                widget.Sep(linewidth = 0, padding = 5, background = colors[0]),
+                widget.Sep(
+                    linewidth = 0, padding = 5, background = colors[0]
+                ),
 
                 ##separator##
-                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
+                widget.Sep(
+                    linewidth = 0, padding = 16, background = colors[0]
+                ),
 
                 ##workspaces##
-                widget.GroupBox(highlight_method = "line", active = colors[3],
-                    inactive = colors[7], highlight_color = colors[1],
-                    this_current_screen_border = colors[6],this_screen_border = colors[4]),
+                widget.GroupBox(
+                    highlight_method = "line", active = colors[3], inactive = colors[7],
+                    highlight_color = colors[1], this_current_screen_border = colors[6],
+                    this_screen_border = colors[4]
+                ),
 
                 ##separator##
-                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
+                widget.Sep(
+                    linewidth = 0, padding = 16, background = colors[0]
+                ),
 
                 ##window name##
                 widget.WindowName(),
@@ -138,74 +163,105 @@ screens = [
                 ##run menu##
                 widget.Prompt(),
 
+
+
+
+
+
+
+#### RIGHT SIDE OF THE BAR ####
+
                 ##systray##
                 widget.Systray(),
-
-                ##separator##
-                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
-
-                ##cpu##
-                widget.CPU(),
-
-                ##separator##
-                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
-
-                ##ram##
-                widget.Memory(),
-
-                ##separator##
-                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
-
-
-               # widget.TextBox(
-               #        text = ' ',
-               #        fontsize = 30
-               #        ),
-
-
-
-
-                ##network##
-                widget.Net(interface = 'wlp5s0', format = '{down} ↓↑ {up}'),
-
-                ##separator##
-                widget.Sep(linewidth = 0, padding = 16, background = colors[0]),
-
-                ##clock##
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-
+               ### CPU WIDGET ###
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18, padding = 0, foreground = colors[9], background = colors[0]
+                ),
 
                 widget.TextBox(
-                       text = '',
-                       fontsize = 18, padding = 0, foreground = colors[4], background = colors[5]
-                       ),
+                    text = ' ', fontsize = 20, padding = 0,foreground  = colors[0], background = colors[9]
+                ),
 
 
+                widget.CPU(
+                    foreground = colors[0], background = colors[9]
+                ),
+
+                ### RAM WIDGET ###
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18, padding = 0, foreground = colors[3], background = colors[9]
+                ),
 
                 widget.TextBox(
-                       text = '',
-                       fontsize = 22, padding = 1, foreground = colors[2], background = colors[4]
-                       ),
+                    text = ' ', fontsize = 20, padding = 0, background = colors[3]
+                ),
 
 
-                ##volume##
-                widget.Volume(padding = 5, background = colors[4]),
+                widget.Memory(
+                    background = colors[3]
+                ),
 
+                ### NETWORK WIDGET ###
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18, padding = 0, foreground = colors[18], background = colors[3]
+                ),
 
                 widget.TextBox(
-                       text = '',
-                       fontsize = 18, padding = 0, foreground = colors[3], background = colors[4]
-                       ),
+                    text = ' ', fontsize = 20, padding = 0, foreground = colors[0], background = colors[18]
+                ),
 
 
+                widget.Net(
+                    interface = 'wlp5s0', format = '{down} ↓↑{up}', foreground = colors[0],
+                    background = colors[18]
+                ),
 
-                ##log out##
-                widget.QuickExit(default_text = ' LOGOUT ', foreground = colors[2], background = colors[3]),
+                ### CLOCK WIDGET ###
+                widget.TextBox(
+                    text = '', fontsize = 18, padding = 0, foreground = colors[15], background = colors[18]
+                ),
 
+                widget.TextBox(
+                    text = ' ', fontsize = 20, padding = 0, foreground = colors[2], background = colors[15]
+                ),
+
+
+                widget.Clock(
+                    format='%d-%m %a %I:%M %p', background = colors[15]
+                ),
+
+                ### VOLUME WIDGET ###
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18, padding = 0, foreground = colors[7], background = colors[15]
+                ),
+
+                widget.TextBox(
+                    text = ' ',
+                    fontsize = 25, padding = 1, foreground = colors[0], background = colors[7]
+                ),
+
+                widget.Volume(
+                    padding = 5,foreground = colors[0], background = colors[7], format = '{}'
+                ),
+
+                ### LOGOUT WIDGET ###
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18, padding = 0, foreground = colors[5], background = colors[7]
+                ),
+
+                widget.QuickExit(
+                    fontsize = 20, default_text = '   ', foreground = colors[2], background = colors[5],
+                    countdown_format = ' {}  '
+                ),
             ],
             24,
             background=colors[0],
-            opacity = 0.8,
+            opacity = 1,
             margin = 5,
         ),
     ),
