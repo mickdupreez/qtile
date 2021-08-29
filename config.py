@@ -60,27 +60,10 @@ keys = [
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 ]
 
-colors = [["#282c34", "#282c34"], #0
-          ["#3d3f4b", "#434758"], #1
-          ["#ffffff", "#ffffff"], #2
-          ["#ff5555", "#ff5555"], #3
-          ["#ff6e67", "#ff6e67"], #4
-          ["#ff2222", "#ff2222"], #5
-          ["#bd93f9", "#bd93f9"], #6
-          ["#caa9fa", "#caa9fa"], #7
-          ["#4d5b86", "#4d5b86"], #8
-          ["#50fa7b", "#50fa7b"], #9
-          ["#5af78e", "#5af78e"], #10
-          ["#1ef956", "#1ef956"], #11
-          ["#f1fa8c", "#f1fa8c"], #12
-          ["#f4f99d", "#f4f99d"], #13
-          ["#ebf85b", "#ebf85b"], #14
-          ["#ff79c6", "#ff79c6"], #15
-          ["#ff92d0", "#ff92d0"], #16
-          ["#ff46b0", "#ff46b0"], #17
-          ["#8be9fd", "#8be9fd"], #18
-          ["#9aedfe", "#9aedfe"], #19
-          ["#59dffc", "#59dffc"]] #20
+colors = [["#f8f8f2", "#f8f8f2"], #0 WHITE
+          ["#282a36", "#282a36"], #1 GREAY
+          ["#6272a4", "#6272a4"], #2 PURPLE
+          ["#ff5555", "#ff5555"]] #3 RED
 
 layouts = [
 
@@ -133,58 +116,63 @@ screens = [
 #### LEFT SIDE OF THE BAR ####
 
 
+                ##workspaces##
+                widget.GroupBox(
+                    highlight_method = "rounded",
+                    active = colors[3],
+                    inactive = colors[1],
+                    this_current_screen_border = colors[3],
+                    this_screen_border = colors[3],
+                    background = colors[2]
+                ),
+
+
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18,
+                    padding = 0,
+                    foreground = colors[2],
+                    background = colors[3]
+                ),
+
+                widget.Image(
+                    filename = '~/Pictures/icons/firefox-icon.png',
+                    margin = 2,
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('firefox')},
+                    background = colors[3]
+                ),
+
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18,
+                    padding = 0,
+                    foreground = colors[3],
+                    background = colors[2]
+                ),
+
+                widget.Image(
+                    filename = '~/Pictures/icons/emacs-icon.png',
+                    margin = 0,
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('emacs')},
+                    background = colors[2]
+                ),
+
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18,
+                    padding = 0,
+                    foreground = colors[2],
+                    background = colors[1]
+                ),
+
                 ##separator##
                 widget.Sep(
                     linewidth = 0,
-                    padding = 0,
-                    background = colors[0]
+                    padding = 16,
+                    background = colors[1]
                 ),
 
-
-                ##workspaces##
-                widget.GroupBox(
-                    highlight_method = "rounded", active = colors[3], inactive = colors[2],
-                    this_current_screen_border = colors[10],
-                    this_screen_border = colors[4], background = colors[7]
-                ),
-
-                widget.TextBox(
-                    text = '',
-                    fontsize = 18, padding = 0, foreground = colors[7], background = colors[12]
-                ),
-
-                widget.Image(
-                    filename = '~/Pictures/icons/firefox-icon.png', margin = 2,
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('firefox')},
-                    background = colors[12]
-                             ),
-
-                widget.TextBox(
-                    text = '',
-                    fontsize = 18, padding = 0, foreground = colors[12], background = colors[ 6]
-                ),
-
-                widget.Image(
-                    filename = '~/Pictures/icons/emacs-icon.png', margin = 0,
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('emacs')},
-                    background = colors[6]
-                             ),
-
-                widget.TextBox(
-                    text = '',
-                    fontsize = 18, padding = 0, foreground = colors[6], background = colors[0]
-                ),
-
-
-
-
-
-                ##separator##
-                widget.Sep(
-                    linewidth = 0, padding = 16, background = colors[0]
-                ),
-
-                ##window name##
+                ###window name##
                 widget.WindowName(
                     empty_group_string = 'No Windows open',
                 ),
@@ -203,91 +191,155 @@ screens = [
                ### CPU WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18, padding = 0, foreground = colors[9], background = colors[0]
+                    fontsize = 18,
+                    padding = 0,
+                    foreground = colors[2],
+                    background = colors[1]
                 ),
 
                 widget.TextBox(
-                    text = ' ', fontsize = 20, padding = 0,foreground  = colors[0], background = colors[9]
+                    text = ' ',
+                    fontsize = 20,
+                    padding = 0,
+                    foreground  = colors[1],
+                    background = colors[2]
                 ),
 
 
+                widget.CPUGraph(
+                    background = colors[2]
+                ),
+
                 widget.CPU(
-                    foreground = colors[0], background = colors[9]
+                    foreground = colors[1],
+                    background = colors[2],
                 ),
 
                 ### RAM WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18, padding = 0, foreground = colors[3], background = colors[9]
+                    fontsize = 18,
+                    padding = 0,
+                    foreground = colors[3],
+                    background = colors[2],
                 ),
 
                 widget.TextBox(
-                    text = ' ', fontsize = 20, padding = 0, background = colors[3]
+                    text = ' ',
+                    fontsize = 20,
+                    padding = 0,
+                    foreground = colors[1],
+                    background = colors[3],
                 ),
 
+                widget.MemoryGraph(
+                    background = colors[3],
+                ),
 
                 widget.Memory(
-                    background = colors[3]
+                    background = colors[3],
+                    foreground = colors[1],
                 ),
 
                 ### NETWORK WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18, padding = 0, foreground = colors[18], background = colors[3]
+                    fontsize = 18,
+                    padding = 0,
+                    foreground = colors[2],
+                    background = colors[3],
                 ),
 
                 widget.TextBox(
-                    text = ' ', fontsize = 20, padding = 0, foreground = colors[0], background = colors[18]
+                    text = ' ',
+                    fontsize = 20,
+                    padding = 0,
+                    foreground = colors[1],
+                    background = colors[2],
+                ),
+
+
+                widget.NetGraph(
+                    background = colors[2],
                 ),
 
 
                 widget.Net(
-                    interface = 'wlp5s0', format = '{down} ↓↑{up}', foreground = colors[0],
-                    background = colors[18]
+                    interface = 'wlp5s0',
+                    format = '{down} ↓↑{up}',
+                    foreground = colors[1],
+                    background = colors[2],
                 ),
 
                 ### CLOCK WIDGET ###
                 widget.TextBox(
-                    text = '', fontsize = 18, padding = 0, foreground = colors[15], background = colors[18]
+                    text = '',
+                    fontsize = 18,
+                    padding = 0,
+                    background = colors[2],
+                    foreground = colors[3],
                 ),
 
                 widget.TextBox(
-                    text = ' ', fontsize = 20, padding = 0, foreground = colors[2], background = colors[15]
+                    text = ' ',
+                    fontsize = 20,
+                    padding = 0,
+                    background = colors[3],
+                    foreground = colors[1],
+
                 ),
 
 
                 widget.Clock(
-                    format='%d-%m %a %I:%M %p', background = colors[15]
+                    format='%d-%m %a %I:%M %p',
+                    background = colors[3],
+                    foreground = colors[1],
                 ),
 
                 ### VOLUME WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18, padding = 0, foreground = colors[7], background = colors[15]
+                    fontsize = 18,
+                    padding = 0,
+                    background = colors[3],
+                    foreground = colors[2],
                 ),
 
                 widget.TextBox(
                     text = ' ',
-                    fontsize = 25, padding = 1, foreground = colors[0], background = colors[7]
+                    fontsize = 25,
+                    padding = 1,
+                    background = colors[2],
+                    foreground = colors[1],
                 ),
 
                 widget.Volume(
-                    padding = 5,foreground = colors[0], background = colors[7], format = '{}'
+                    padding = 5,
+                    format = '{}',
+                    background = colors[2],
+                    foreground = colors[1],
+
                 ),
 
                 ### LOGOUT WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18, padding = 0, foreground = colors[5], background = colors[7]
+                    fontsize = 18,
+                    padding = 0,
+                    foreground = colors[3],
+                    background = colors[2],
                 ),
 
                 widget.QuickExit(
-                    fontsize = 20, default_text = '   ', foreground = colors[2], background = colors[5],
-                    countdown_format = ' {}  '
+                    fontsize = 20,
+                    default_text = '  ',
+                    countdown_format = ' {}  ',
+                    background = colors[3],
+                    foreground = colors[1],
                 ),
             ],
             24,
-            background=colors[0],
+            background=colors[1],
             opacity = 1,
             margin = 5,
         ),
