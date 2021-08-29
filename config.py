@@ -58,8 +58,6 @@ keys = [
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"),
 ]
 
 colors = [["#282c34", "#282c34"], #0
@@ -85,6 +83,13 @@ colors = [["#282c34", "#282c34"], #0
           ["#59dffc", "#59dffc"]] #20
 
 layouts = [
+
+    layout.Bsp(
+        fair = False,
+        border_focus = '#e1acff',
+        margin_on_single = None,
+        margin = 10,
+        border_width = 4),
     layout.Columns(
         border_focus = '#e1acff',
         margin_on_single = None,
@@ -117,7 +122,7 @@ dgroups_key_binder = simple_key_binder([mod])
 widget_defaults = dict(
     font='MesloLGS NF BOLD',
     fontsize=15,
-    padding=1,
+    padding=0,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -127,30 +132,52 @@ screens = [
             [
 #### LEFT SIDE OF THE BAR ####
 
-                ##separator##
-                widget.Sep(
-                    linewidth = 0, padding = 26, background = colors[0]
-                ),
-
-                ##show current layout##
-                widget.CurrentLayout(),
 
                 ##separator##
                 widget.Sep(
-                    linewidth = 0, padding = 5, background = colors[0]
+                    linewidth = 0,
+                    padding = 0,
+                    background = colors[0]
                 ),
 
-                ##separator##
-                widget.Sep(
-                    linewidth = 0, padding = 16, background = colors[0]
-                ),
 
                 ##workspaces##
                 widget.GroupBox(
-                    highlight_method = "line", active = colors[3], inactive = colors[7],
-                    highlight_color = colors[1], this_current_screen_border = colors[6],
-                    this_screen_border = colors[4]
+                    highlight_method = "rounded", active = colors[3], inactive = colors[2],
+                    this_current_screen_border = colors[10],
+                    this_screen_border = colors[4], background = colors[7]
                 ),
+
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18, padding = 0, foreground = colors[7], background = colors[12]
+                ),
+
+                widget.Image(
+                    filename = '~/Pictures/icons/firefox-icon.png', margin = 2,
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('firefox')},
+                    background = colors[12]
+                             ),
+
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18, padding = 0, foreground = colors[12], background = colors[ 6]
+                ),
+
+                widget.Image(
+                    filename = '~/Pictures/icons/emacs-icon.png', margin = 0,
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('emacs')},
+                    background = colors[6]
+                             ),
+
+                widget.TextBox(
+                    text = '',
+                    fontsize = 18, padding = 0, foreground = colors[6], background = colors[0]
+                ),
+
+
+
+
 
                 ##separator##
                 widget.Sep(
@@ -158,10 +185,9 @@ screens = [
                 ),
 
                 ##window name##
-                widget.WindowName(),
-
-                ##run menu##
-                widget.Prompt(),
+                widget.WindowName(
+                    empty_group_string = 'No Windows open',
+                ),
 
 
 
@@ -170,6 +196,7 @@ screens = [
 
 
 #### RIGHT SIDE OF THE BAR ####
+
 
                 ##systray##
                 widget.Systray(),
