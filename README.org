@@ -183,8 +183,6 @@ dgroups_key_binder = simple_key_binder([mod])
 
 #+end_src
 
-#+RESULTS:
-
 * BAR AND WIDGETS
 
 This block of code is for the bar and all the widgets in the bar.
@@ -197,7 +195,7 @@ This block of code is for the bar and all the widgets in the bar.
 
 widget_defaults = dict(
     font='MesloLGS NF BOLD',
-    fontsize=15,
+    fontsize=20,
     padding=0,
 )
 extension_defaults = widget_defaults.copy()
@@ -211,63 +209,59 @@ screens = [
 
                 ##workspaces##
                 widget.GroupBox(
+                    fmt = ' {} ',
                     highlight_method = "rounded",
-                    active = colors[3],
+                    active = colors[0],
                     inactive = colors[1],
-                    this_current_screen_border = colors[3],
-                    this_screen_border = colors[3],
-                    background = colors[2]
+                    this_current_screen_border = colors[1],
+                    this_screen_border = colors[1],
+                    background = colors[3]
                 ),
 
 
                 widget.TextBox(
                     text = '',
-                    fontsize = 18,
-                    padding = 0,
-                    foreground = colors[2],
-                    background = colors[3]
-                ),
-
-                widget.Image(
-                    filename = '~/Pictures/icons/firefox-icon.png',
-                    margin = 2,
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('firefox')},
-                    background = colors[3]
-                ),
-
-                widget.TextBox(
-                    text = '',
-                    fontsize = 18,
+                    fontsize = 22,
                     padding = 0,
                     foreground = colors[3],
-                    background = colors[2]
-                ),
-
-                widget.Image(
-                    filename = '~/Pictures/icons/emacs-icon.png',
-                    margin = 0,
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('emacs')},
-                    background = colors[2]
-                ),
-
-                widget.TextBox(
-                    text = '',
-                    fontsize = 18,
-                    padding = 0,
-                    foreground = colors[2],
                     background = colors[1]
                 ),
 
-                ##separator##
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 16,
-                    background = colors[1]
-                ),
+                #widget.Image(
+                #    filename = '~/Pictures/icons/firefox-icon.png',
+                #    margin = 2,
+                #    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('firefox')},
+                #    background = colors[3]
+                #),
+
+                #widget.TextBox(
+                #    text = '',
+                #    fontsize = 18,
+                #    padding = 0,
+                #    foreground = colors[3],
+                #    background = colors[2]
+                #),
+
+                #widget.Image(
+                #    filename = '~/Pictures/icons/emacs-icon.png',
+                #    margin = 0,
+                #    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('emacs')},
+                #    background = colors[2]
+                #),
+
+                #widget.TextBox(
+                #    text = '',
+                #    fontsize = 18,
+                #    padding = 0,
+                #    foreground = colors[2],
+                #    background = colors[1]
+                #),
+
 
                 ###window name##
                 widget.WindowName(
-                    empty_group_string = 'No Windows open',
+                    fmt = '     {} ',
+                    empty_group_string = 'Welcome OZ',
                 ),
 
 
@@ -284,15 +278,15 @@ screens = [
                ### CPU WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18,
+                    fontsize = 22,
                     padding = 0,
                     foreground = colors[2],
-                    background = colors[1]
+                    background = colors[1],
                 ),
 
                 widget.TextBox(
-                    text = ' ',
-                    fontsize = 20,
+                    text = '  ',
+                    fontsize = 30,
                     padding = 0,
                     foreground  = colors[1],
                     background = colors[2]
@@ -300,52 +294,58 @@ screens = [
 
 
                 widget.CPUGraph(
+                    border_width = 3,
+                    border_color = colors[1],
                     background = colors[2]
                 ),
 
                 widget.CPU(
                     foreground = colors[1],
                     background = colors[2],
+                    format = ' CPU {freq_current}GHz {load_percent}% '
                 ),
 
                 ### RAM WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18,
+                    fontsize = 22,
                     padding = 0,
                     foreground = colors[3],
                     background = colors[2],
                 ),
 
                 widget.TextBox(
-                    text = ' ',
-                    fontsize = 20,
+                    text = '  ',
+                    fontsize = 30,
                     padding = 0,
                     foreground = colors[1],
                     background = colors[3],
                 ),
 
                 widget.MemoryGraph(
+                    border_width = 3,
+                    border_color = colors[1],
                     background = colors[3],
                 ),
 
                 widget.Memory(
                     background = colors[3],
                     foreground = colors[1],
+                    format = '{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm} ',
                 ),
 
                 ### NETWORK WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18,
+                    fontsize = 22,
                     padding = 0,
                     foreground = colors[2],
                     background = colors[3],
                 ),
 
                 widget.TextBox(
-                    text = ' ',
-                    fontsize = 20,
+                    text = '  ',
+                    fontsize = 30,
                     padding = 0,
                     foreground = colors[1],
                     background = colors[2],
@@ -353,13 +353,15 @@ screens = [
 
 
                 widget.NetGraph(
+                    border_width = 3,
+                    border_color = colors[1],
                     background = colors[2],
                 ),
 
 
                 widget.Net(
                     interface = 'wlp5s0',
-                    format = '{down} ↓↑{up}',
+                    format = ' ↓{down} ↑{up} ',
                     foreground = colors[1],
                     background = colors[2],
                 ),
@@ -367,24 +369,23 @@ screens = [
                 ### CLOCK WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18,
+                    fontsize = 22,
                     padding = 0,
                     background = colors[2],
                     foreground = colors[3],
                 ),
 
                 widget.TextBox(
-                    text = ' ',
-                    fontsize = 20,
+                    text = '  ',
+                    fontsize = 30,
                     padding = 0,
                     background = colors[3],
                     foreground = colors[1],
-
                 ),
 
 
                 widget.Clock(
-                    format='%d-%m %a %I:%M %p',
+                    format='%d-%m %a %I:%M %p ',
                     background = colors[3],
                     foreground = colors[1],
                 ),
@@ -392,15 +393,15 @@ screens = [
                 ### VOLUME WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18,
+                    fontsize = 22,
                     padding = 0,
                     background = colors[3],
                     foreground = colors[2],
                 ),
 
                 widget.TextBox(
-                    text = ' ',
-                    fontsize = 25,
+                    text = '  ',
+                    fontsize = 30,
                     padding = 1,
                     background = colors[2],
                     foreground = colors[1],
@@ -408,7 +409,7 @@ screens = [
 
                 widget.Volume(
                     padding = 5,
-                    format = '{}',
+                    format = '{} ',
                     background = colors[2],
                     foreground = colors[1],
 
@@ -417,24 +418,24 @@ screens = [
                 ### LOGOUT WIDGET ###
                 widget.TextBox(
                     text = '',
-                    fontsize = 18,
+                    fontsize = 22,
                     padding = 0,
                     foreground = colors[3],
                     background = colors[2],
                 ),
 
                 widget.QuickExit(
-                    fontsize = 20,
+                    fontsize = 30,
                     default_text = '  ',
                     countdown_format = ' {}  ',
                     background = colors[3],
                     foreground = colors[1],
                 ),
             ],
-            24,
+            30,
             background=colors[1],
             opacity = 1,
-            margin = 5,
+            margin = 0,
         ),
     ),
 ]
