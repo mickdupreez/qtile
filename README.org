@@ -118,7 +118,7 @@ This block of code is a list of colors used within this config
 #+begin_src python
 
 colors = [["#f8f8f2", "#f8f8f2"], #0 WHITE
-          ["#282a36", "#282a36"], #1 GREAY
+          ["#282a36", "#282a36"], #1 GRAY
           ["#6272a4", "#6272a4"], #2 PURPLE
           ["#ff5555", "#ff5555"]] #3 RED
 
