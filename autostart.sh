@@ -6,3 +6,4 @@
 picom &
 nitrogen --restore &
 sxhkd &
+

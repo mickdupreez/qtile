@@ -138,25 +138,26 @@ This block of code sets the default layout for all windows
 
 #+begin_src python
 
-
 layouts = [
 
     layout.Bsp(
         fair = False,
-        border_focus = '#e1acff',
+        border_focus = '#ff5555',
         margin_on_single = None,
         margin = 10,
-        border_width = 4),
-    layout.Columns(
-        border_focus = '#e1acff',
-        margin_on_single = None,
-        margin = 10,
-        border_width = 4),
-    layout.Max(),
+        border_width = 4
+        ),
+    layout.Max(
+        ),
+    layout.Floating(
+        ),
+
 ]
 
 
 #+end_src
+
+#+RESULTS:
 
 * WORK-SPACES
 
@@ -166,26 +167,78 @@ This block of code is a list of the workspaces numbered 1-9.
 
 #+begin_src python
 
-group_names = [("1", {'layout': 'monadtall'}),
-               ("2", {'layout': 'monadtall'}),
-               ("3", {'layout': 'monadtall'}),
-               ("4", {'layout': 'monadtall'}),
-               ("5", {'layout': 'monadtall'}),
-               ("6", {'layout': 'monadtall'}),
-               ("7", {'layout': 'monadtall'}),
-               ("8", {'layout': 'monadtall'}),
-               ("9", {'layout': 'monadtall'})]
+groups = []
+
+   # Allocate layouts and labels
+
+group_names     = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+]
+group_labels    = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+]
+
+group_matches   = [
+    [Match(wm_class=["NONE"])],
+    [Match(wm_class=["NONE"])],
+    [Match(wm_class=["NONE"])],
+    [Match(wm_class=["NONE"])],
+    [Match(wm_class=["NONE"])],
+    [Match(wm_class=["NONE"])],
+    [Match(wm_class=["NONE"])],
+    [Match(wm_class=["NONE"])],
+    [Match(wm_class=["discord", "Steam"])],
+]
+
+group_layout    = [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "max",
+]
+
+for i in range(len(group_names)):
+    groups.append(
+        Group(
+            name=group_names[i],
+            label=group_labels[i],
+            matches=group_matches[i],
+            layout=group_layout[i],
+        ))
 
 
-groups = [Group(name, **kwargs) for name, kwargs in group_names]
+for i in groups:
+    keys.extend([
 
-for i, (name, kwargs) in enumerate(group_names, 1):
-    keys.append(Key([mod], str(i), lazy.group[name].toscreen()))        # Switch to another group
-    keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name))) # Send current window to another group
-# allow mod3+1 through mod3+0 to bind to groups; if you bind your groups
-# by hand in your config, you don't need to do this.
-from libqtile.dgroups import simple_key_binder
-dgroups_key_binder = simple_key_binder([mod])
+   # Workspace navigation
+
+    Key([mod], i.name, lazy.group[i.name].toscreen()),
+    Key([mod], "Tab", lazy.screen.next_group()),
+    Key([mod, "control"], i.name, lazy.window.togroup(i.name)),
+    Key([mod, "shift"], i.name, lazy.window.togroup(i.name) , lazy.group[i.name].toscreen()),
+    ])
+
 
 #+end_src
 
@@ -215,6 +268,7 @@ screens = [
 
                 ##workspaces##
                 widget.GroupBox(
+                    fontsize = 22,
                     fmt = ' {} ',
                     highlight_method = "rounded",
                     active = colors[0],
@@ -232,36 +286,6 @@ screens = [
                     foreground = colors[3],
                     background = colors[1]
                 ),
-
-                #widget.Image(
-                #    filename = '~/Pictures/icons/firefox-icon.png',
-                #    margin = 2,
-                #    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('firefox')},
-                #    background = colors[3]
-                #),
-
-                #widget.TextBox(
-                #    text = '',
-                #    fontsize = 18,
-                #    padding = 0,
-                #    foreground = colors[3],
-                #    background = colors[2]
-                #),
-
-                #widget.Image(
-                #    filename = '~/Pictures/icons/emacs-icon.png',
-                #    margin = 0,
-                #    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('emacs')},
-                #    background = colors[2]
-                #),
-
-                #widget.TextBox(
-                #    text = '',
-                #    fontsize = 18,
-                #    padding = 0,
-                #    foreground = colors[2],
-                #    background = colors[1]
-                #),
 
 
                 ###window name##
